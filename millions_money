@@ -1,0 +1,90 @@
+questions = [
+    {
+        "question": "What is the capital of France?",
+        "choices": ["Paris", "Lyon", "Marseille", "Toulouse"],
+        "answer": "Paris",
+        "prize": 100
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "choices": ["Venus", "Mars", "Jupiter", "Saturn"],
+        "answer": "Mars",
+        "prize": 200
+    },
+    {
+        "question": "How many sides does a triangle have?",
+        "choices": ["Three", "Four", "Five", "Six"],
+        "answer": "Three",
+        "prize": 300
+    },
+    {
+        "question": "Which animal is the largest mammal?",
+        "choices": ["Elephant", "Giraffe", "Blue whale", "Great white shark"],
+        "answer": "Blue whale",
+        "prize": 500
+    },
+    {
+        "question": "Who wrote Romeo and Juliet?",
+        "choices": [
+            "Charles Dickens",
+            "William Shakespeare",
+            "Mark Twain",
+            "George Orwell"
+        ],
+        "answer": "William Shakespeare",
+        "prize": 1000
+    },
+    {
+        "question": "What is the chemical symbol for gold?",
+        "choices": ["Ag", "Au", "Fe", "Go"],
+        "answer": "Au",
+        "prize": 2000
+    },
+    {
+        "question": "Which country contains the Great Pyramid of Giza?",
+        "choices": ["Greece", "Egypt", "India", "Mexico"],
+        "answer": "Egypt",
+        "prize": 4000
+    },
+    {
+        "question": "What is the largest organ in the human body?",
+        "choices": ["Heart", "Liver", "Brain", "Skin"],
+        "answer": "Skin",
+        "prize": 8000
+    },
+    {
+        "question": "Which element has the atomic number 1?",
+        "choices": ["Oxygen", "Helium", "Hydrogen", "Carbon"],
+        "answer": "Hydrogen",
+        "prize": 16000
+    },
+    {
+        "question": "What process allows plants to convert light into food?",
+        "choices": [
+            "Respiration",
+            "Digestion",
+            "Photosynthesis",
+            "Fermentation"
+        ],
+        "answer": "Photosynthesis",
+        "prize": 32000
+    }
+]
+choices = ["A", "B", "C", "D"]
+prize_box = 0
+for position, question in enumerate(questions):
+    print(f"Question {position + 1}: {question['question']}")
+    for number, choice in enumerate(question['choices']):
+        print(f"{choices[number]}. {choice}")
+    answer = input("Enter your answer (A, B, C, or D): ").upper()
+    while answer not in choices:
+        print("Invalid choice. Please select A, B, C, or D.")
+        answer = input("Enter your answer (A, B, C, or D): ").upper()
+    selected_choice = choices.index(answer)
+    selected_answer = question['choices'][selected_choice]
+    if selected_answer == question['answer']:
+        prize_box += question['prize']
+        print(f"Correct! You won ${question['prize']}.")
+        print(f"Your total prize is now ${prize_box}.")
+    else:
+        print(f"Incorrect. The correct answer was {question['answer']}.")
