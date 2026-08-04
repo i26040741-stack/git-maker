@@ -13,19 +13,17 @@ dare = {
     "Dance for 1 minute without music.",
     "Do an impression of your favorite celebrity."
 }
-user_choice = input("Choose 'truth' or 'dare or 'quit': ").strip().lower()
+user_choice = input("Choose 'truth', 'dare', or 'quit': ").strip().lower()
 while True:
     if user_choice == "quit":
         print("Thanks for playing!")
         break
     elif user_choice == "truth":
-        question = random.choice(truth)
+        question = random.choice(list(truth))
         print(f"Truth: {question}")
     elif user_choice == "dare":
-        challenge = random.choice(dare)
+        challenge = random.choice(list(dare))
         print(f"Dare: {challenge}")
     else:
         print("Invalid choice. Please choose 'truth', 'dare', or 'quit'.")
-    user_choice = input("Choose 'truth' or 'dare or 'quit': ").strip().lower()
-
-
+    user_choice = input("Choose 'truth', 'dare', or 'quit': ").strip().lower()
