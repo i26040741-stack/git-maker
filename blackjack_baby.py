@@ -20,14 +20,26 @@ def display(player, dealer):
 
 display(player, dealer)
 
-if player > 21:
-    print('player busts! Dealer wins.')
-elif player == 21 or (player > dealer <= 20):
-    print('Player has blackjack! Player wins.')
+if player > 21 and dealer > 21:
+    print("Both players bust! Dealer wins.")
+
+elif player > 21:
+    print("Player busts! Dealer wins.")
+
 elif dealer > 21:
-    print('Dealer busts! Player wins.')
-elif dealer == 21 or (dealer > player <= 20):
-    print('Dealer has blackjack! Dealer wins.')
+    print("Dealer busts! Player wins.")
+
+elif player == 21 and dealer != 21:
+    print("Player has blackjack! Player wins.")
+
+elif dealer == 21 and player != 21:
+    print("Dealer has blackjack! Dealer wins.")
+
+elif player > dealer:
+    print("Player wins!")
+
+elif dealer > player:
+    print("Dealer wins!")
+
 else:
-    player == dealer
-    print('It\'s a tie! Dealer wins.')
+    print("It's a tie! Dealer wins.")
