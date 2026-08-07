@@ -1,75 +1,91 @@
+
+ 
+
 def show_menu():
     print("╔══════════════════════════════════════╗")
-    print("║      METRIC CONVERSION CHALLENGE     ║")
-    print("║   Who Wants to Be a Millionaire?     ║")
+    print("║     METRIC CONVERSION CHALLENGE      ║")
+    print("║                                      ║")
     print("╠══════════════════════════════════════╣")
     print("║  A. Kilometres → Miles               ║")
     print("║  B. Miles → Kilometres               ║")
     print("║  C. Kilograms → Pounds               ║")
-    print("║  D. Celsius → Fahrenheit             ║")
+    print("║  D. Pounds → Kilograms               ║")
+    print("║  E. Celsius → Fahrenheit             ║")
+    print("║  F. Fahrenheit → Celsius             ║")
     print("║  Q. Quit                             ║")
     print("╚══════════════════════════════════════╝")
 
 
-def get_question(choice):
-    if choice == "A":
-        return (
-            "How many miles are in 10 kilometres?",
-            ["A. 6.21", "B. 8.05", "C. 12.43", "D. 16.09"],
-            "A",
-        )
-    if choice == "B":
-        return (
-            "How many kilometres are in 5 miles?",
-            ["A. 3.11", "B. 8.05", "C. 10.00", "D. 12.43"],
-            "B",
-        )
-    if choice == "C":
-        return (
-            "How many pounds are in 3 kilograms?",
-            ["A. 4.41", "B. 5.51", "C. 6.61", "D. 7.71"],
-            "C",
-        )
-    if choice == "D":
-        return (
-            "What is 25°C in Fahrenheit?",
-            ["A. 45°F", "B. 57°F", "C. 68°F", "D. 77°F"],
-            "D",
-        )
-    raise ValueError("Invalid choice")
+def kilometres_to_miles(kilometres):
+    return kilometres * 0.621371
 
 
-def main():
-    score = 0
+def miles_to_kilometres(miles):
+    return miles * 1.60934
+
+
+def kilograms_to_pounds(kilograms):
+    return kilograms * 2.20462
+
+
+def pounds_to_kilograms(pounds):
+    return pounds * 0.453592
+
+
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9 / 5) + 32
+
+
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5 / 9
+
+
+while True:
+    show_menu()
+    try:
+        answer = input("Choose an option: ").lower().strip()
+        if answer not in ["a", "b", "c", "d", "e", "f", "q"]:
+            raise ValueError
+
+    except ValueError:
+        print("Choose only fromt those a,b,c... :")
+        continue
+
+
+    if answer == "q":
+        print("BYE!!")
+        break
 
     while True:
-        show_menu()
-        choice = input("Choose an option: ").strip().upper()
-
-        if choice == "Q":
-            print(f"Thanks for playing! Final score: {score}")
+        try:
+            value = float(input("Enter the value that u want converted: "))
             break
+            
+        except ValueError:
+            print("enter valid numeric number!")
 
-        if choice not in {"A", "B", "C", "D"}:
-            print("Invalid choice. Please try again.\n")
-            continue
+    if answer == "a":
+        miles = kilometres_to_miles(value)
+        print(f"{value} km = {miles:.2f} miles")
 
-        question, options, correct_answer = get_question(choice)
-        print(f"\n{question}")
-        for option in options:
-            print(option)
+    elif answer == "b":
+        kilometres = miles_to_kilometres(value)
+        print(f"{value} miles = {kilometres:.2f} km")
 
-        answer = input("Choose A, B, C, or D: ").strip().upper()
+    elif answer == "c":
+        pounds = kilograms_to_pounds(value)
+        print(f"{value} kg = {pounds:.2f} pounds")
 
-        if answer == correct_answer:
-            score += 1000
-            print("Correct! Well done.\n")
-        else:
-            print("Wrong answer! Game over.\n")
-            print(f"Final score: {score}")
-            break
+    elif answer == "d":
+        kilograms = pounds_to_kilograms(value)
+        print(f"{value} pounds = {kilograms:.2f} kg")
 
+    elif answer == "e":
+        fahrenheit = celsius_to_fahrenheit(value)
+        print(f"{value}°C = {fahrenheit:.2f}°F")
 
-if __name__ == "__main__":
-    main()
+    elif answer == "f":
+        celsius = fahrenheit_to_celsius(value)
+        print(f"{value}°F = {celsius:.2f}°C")
 
+    print()
