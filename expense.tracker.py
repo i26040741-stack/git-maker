@@ -1,7 +1,19 @@
-
-
+import json
 expenses = []
-total = 0
+
+def save_load():
+   with open("expense.json","w")as files:
+       json.dump(expenses,files)
+
+def load_load():
+   global expenses
+   try:
+      with open('expense.json','r') as files:
+         expenses = json.load(files)
+   except FileNotFoundError:
+      expenses = []
+
+load_load()
 def menu():
     print("=" * 25)
     print("1) Add Expense")
@@ -25,17 +37,20 @@ while True:
                        "amount": amount,
                        "category": category
       })
+      save_load()
 
    elif answer == 2:
       if not expenses:
          print("No expenses yet")
          continue
-      total += item["amount"]
+      total = 0
       for number,item in enumerate(expenses,start=1):
-         print(f"\n{number}:{item["name"]}"
-              f"amount: {item["amount"]:.2f}"
-              f"category: {item["category"]}")
-         print(f"total expenses:RM{total}")
+         print(f{number}:{item["name"]}")
+         print(f"amount:{item["amount"]:.2f}")
+         print(f"category: {item["category"]}")
+         total += item["amount"]
+      print("-" * 25)
+      print(f"Total spending: {total}")
          
    elif answer == 3:
       for number,item in enumerate(expenses,start=1):
@@ -46,7 +61,8 @@ while True:
          print("Invalid enter!!")
          continue
       if 1<= choice <= len(expenses):
-         removed = expenses.pop(expenses[choice-1])
+         removed = expenses.pop(choice-1)
+         save_load()
          print("You removed:",removed)
       else:
          print("out of the range")
