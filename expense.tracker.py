@@ -45,7 +45,7 @@ while True:
          continue
       total = 0
       for number,item in enumerate(expenses,start=1):
-         print(f{number}:{item["name"]}")
+         print(f"{number}:{item["name"]}")
          print(f"amount:{item["amount"]:.2f}")
          print(f"category: {item["category"]}")
          total += item["amount"]
